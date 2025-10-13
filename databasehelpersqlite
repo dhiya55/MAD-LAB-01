@@ -1,0 +1,56 @@
+package com.example.sqlite;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DB_NAME = "Student.db";
+    private static final int DB_VERSION = 1;
+    private static final String TABLE = "student_table";
+
+    public DatabaseHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + TABLE +
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, EMAIL TEXT)");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE);
+        onCreate(db);
+    }
+
+    // Insert
+    public boolean insertData(String name, String email) {
+        ContentValues cv = new ContentValues();
+        cv.put("NAME", name);
+        cv.put("EMAIL", email);
+        return getWritableDatabase().insert(TABLE, null, cv) != -1;
+    }
+
+    // Read
+    public Cursor getAllData() {
+        return getReadableDatabase().rawQuery("SELECT * FROM " + TABLE, null);
+    }
+
+    // Update
+    public boolean updateData(String id, String name, String email) {
+        ContentValues cv = new ContentValues();
+        cv.put("NAME", name);
+        cv.put("EMAIL", email);
+        return getWritableDatabase().update(TABLE, cv, "ID=?", new String[]{id}) > 0;
+    }
+
+    // Delete
+    public int deleteData(String id) {
+        return getWritableDatabase().delete(TABLE, "ID=?", new String[]{id});
+    }
+}
