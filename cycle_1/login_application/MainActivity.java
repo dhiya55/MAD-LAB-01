@@ -7,36 +7,37 @@ import android.widget.EditText;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String VALID_USR_NAME="user";
-    private static final String VALID_PWD="pass";
-    private EditText username;
-    private EditText password;
-    private Button loginbtn;
+
+    private static final String USERNAME = "user";
+    private static final String PASSWORD = "pass";
+
+    EditText usernameField, passwordField;
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        username=findViewById(R.id.uname);
-        password=findViewById(R.id.pwd);
 
-        loginbtn=findViewById(R.id.lbtn);
-        loginbtn.setOnClickListener(view -> {
-            String enteredUname=username.getText().toString().trim();
-            String enteredPwd=password.getText().toString().trim();
-            if(enteredUname.isEmpty()||enteredPwd.isEmpty()){
-                showToast("please enter the both username and password");
-            } else if (isValid(enteredUname,enteredPwd)){
-                showToast("login success");
+        usernameField = findViewById(R.id.uname);
+        passwordField = findViewById(R.id.pwd);
+        loginButton = findViewById(R.id.lbtn);
+
+        loginButton.setOnClickListener(v -> {
+            String user = usernameField.getText().toString().trim();
+            String pass = passwordField.getText().toString().trim();
+
+            if (user.isEmpty() || pass.isEmpty()) {
+                showToast("Please enter both username and password");
+            } else if (user.equals(USERNAME) && pass.equals(PASSWORD)) {
+                showToast("Login successful!");
             } else {
-                showToast("invalid creditial");
+                showToast("Invalid credentials");
             }
         });
     }
-    public boolean isValid(String euname,String epwd) {
-        return VALID_USR_NAME.equals(euname)&&VALID_PWD.equals(epwd);
-    }
-    private void showToast(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
