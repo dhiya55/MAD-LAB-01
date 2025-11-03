@@ -1,138 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="601dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
+    <!-- Title -->
     <TextView
         android:id="@+id/text_View"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIMPLE  CALCULATOR"
-        android:textSize="24sp" />
+        android:text="SIMPLE CALCULATOR"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Display -->
     <TextView
         android:id="@+id/text_View1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="24sp"/>
+        android:layout_height="60dp"
+        android:gravity="end|center_vertical"
+        android:background="#EEEEEE"
+        android:padding="12dp"
+        android:textSize="24sp"
+        android:text="0"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Buttons Grid -->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:columnCount="4"
-        android:rowCount="4">
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="1" />
+        android:rowCount="4"
+        android:alignmentMode="alignMargins"
+        android:rowOrderPreserved="false">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="2" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="3" />
-    <Button
-        android:id="@+id/buttonDiv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOperatorClick"
-        android:text="/" />
+        <!-- Row 1 -->
+        <Button android:text="1" android:onClick="onDigitClick"/>
+        <Button android:text="2" android:onClick="onDigitClick"/>
+        <Button android:text="3" android:onClick="onDigitClick"/>
+        <Button android:text="/" android:onClick="onOperatorClick"/>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="4" />
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="5" />
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="6" />
-    <Button
-        android:id="@+id/buttonMul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOperatorClick"
-        android:text="*" />
+        <!-- Row 2 -->
+        <Button android:text="4" android:onClick="onDigitClick"/>
+        <Button android:text="5" android:onClick="onDigitClick"/>
+        <Button android:text="6" android:onClick="onDigitClick"/>
+        <Button android:text="*" android:onClick="onOperatorClick"/>
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="7" />
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="8" />
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="9" />
-    <Button
-        android:id="@+id/buttonSub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOperatorClick"
-        android:text="-" />
-    <Button
-        android:id="@+id/button0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDigitClick"
-        android:text="0" />
-    <Button
-        android:id="@+id/buttonDot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClearClick"
-        android:text="C" />
-    <Button
-        android:id="@+id/buttonEqual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onEqualsClick"
-        android:text="=" />
-    <Button
-        android:id="@+id/buttonAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOperatorClick"
-        android:text="+" />
+        <!-- Row 3 -->
+        <Button android:text="7" android:onClick="onDigitClick"/>
+        <Button android:text="8" android:onClick="onDigitClick"/>
+        <Button android:text="9" android:onClick="onDigitClick"/>
+        <Button android:text="-" android:onClick="onOperatorClick"/>
+
+        <!-- Row 4 -->
+        <Button android:text="0" android:onClick="onDigitClick"/>
+        <Button android:text="C" android:onClick="onClearClick"/>
+        <Button android:text="=" android:onClick="onEqualsClick"/>
+        <Button android:text="+" android:onClick="onOperatorClick"/>
     </GridLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
